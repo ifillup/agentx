@@ -1,0 +1,37 @@
+{
+  "players": [
+    {
+      "UUID": 1234,
+      "name": "Daniel Negreanu",
+      "accounts": [
+        {
+          "platform": "PokerBros",
+          "clubID": "USE",
+          "playerID": 35511795,
+          "username": "Upokeme",
+          "rakeback": 50
+        },
+        {
+          "platform": "pppoker",
+          "clubID": "PLA",
+          "playerID": 38648,
+          "username": "Dyn0mit3",
+          "rakeback": 50
+        }
+      ]
+    },
+    {
+      "UUID": 1235,
+      "name": "Doyle",
+      "accounts": [
+        {
+          "platform": "pppoker",
+          "clubID": "PLA",
+          "playerID": 3551795,
+          "username": "Table General",
+          "rakeback": 40
+        }
+      ]
+    }
+  ]
+}

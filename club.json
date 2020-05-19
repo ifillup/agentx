@@ -1,0 +1,11 @@
+{
+  "clubs": [
+    {
+      "id": 1,
+      "name": "tester club",
+      "code": "TST",
+      "chipValue": 4.2,
+      "platform": "PokerBros"
+    }
+  ]
+}
