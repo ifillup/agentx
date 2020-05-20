@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import { Nav } from 'react-bootstrap';
 
 export default function Layout({ children, title = 'agentX' }) {
   return (
