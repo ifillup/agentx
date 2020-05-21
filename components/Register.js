@@ -2,7 +2,7 @@ import { Button, Form } from 'react-bootstrap';
 
 const Register = ({ handleRegistration, handleSubmit }) => {
   return (
-    <Form onSubmitt={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Form.Group controlId='formBasicEmail'>
         <Form.Label>Login / Register </Form.Label>
         <Form.Control type='email' placeholder='Enter email' />

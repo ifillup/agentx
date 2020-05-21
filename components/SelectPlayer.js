@@ -1,12 +1,17 @@
 import { Button, Form } from 'react-bootstrap';
+import { useContext } from 'react';
+import { PlayersContext } from '../context/playersContext/playersState';
 
 const SelectPlayer = () => {
+  const { players } = useContext(PlayersContext);
   return (
     <Form>
       <Form.Group controlId='formAddPlayer'>
         <Form.Label>Player name</Form.Label>
         <Form.Control as='select'>
-          <option>make a dropdown of all a users players</option>
+          {players.map((player) => (
+            <option>{player.name}</option>
+          ))}
         </Form.Control>
       </Form.Group>
       <Button variant='primary' type='submit'>
