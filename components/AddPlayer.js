@@ -9,6 +9,9 @@ const AddPlayer = () => {
         <Form.Text className='text-muted'>
           A player is a grouping of accounts for accounting purposes
         </Form.Text>
+        <Button variant='primary' type='submit'>
+          Add Player
+        </Button>
       </Form.Group>
     </Form>
   );

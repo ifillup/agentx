@@ -17,7 +17,7 @@ export default function Layout({ children, title = 'agentX' }) {
         ></link>
       </Head>
       <header>
-        <nav>
+        <Nav>
           <Link href='/'>
             <a>Home</a>
           </Link>{' '}
@@ -37,12 +37,17 @@ export default function Layout({ children, title = 'agentX' }) {
           <Link href='/reports'>
             <a>Reports</a>
           </Link>
-        </nav>
+        </Nav>
       </header>
 
       {children}
 
       <footer>{'Copyright agentx 2020'}</footer>
+      <style jsx global>{`
+        .form-group {
+          max-width: 500px;
+        }
+      `}</style>
     </div>
   );
 }
