@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Layout from '../components/Layout';
+
 import Club from '../components/Club';
 import AddClub from '../components/AddClub';
 import * as clubdata from '../club.json'; //TODO
@@ -17,11 +17,11 @@ export default function Clubs() {
     return clubdata.clubs;
   };
   return (
-    <Layout>
+    <>
       <AddClub />
       {clubs.map((club) => (
         <Club club={club} />
       ))}
-    </Layout>
+    </>
   );
 }

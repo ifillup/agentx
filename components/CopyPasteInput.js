@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { StatementContext } from '../context/statementContext/StatementState';
 const CopyPasteInput = ({}) => {
   const [formState, setFormState] = useState({
     club: '',
@@ -7,7 +8,7 @@ const CopyPasteInput = ({}) => {
     profit: '',
     rake: '',
   });
-  const [upload, setUpload] = useState([]);
+  // const [upload, setUpload] = useState([]);
   const changeHandler = (e) => {
     setFormState({
       ...formState,
@@ -15,9 +16,12 @@ const CopyPasteInput = ({}) => {
     });
   };
 
+  const { addTransactions } = useContext(StatementContext);
+
   const onUpload = (e) => {
     e.preventDefault();
-    parseUpload();
+    let upload = parseUpload();
+    addTransactions(upload);
   };
 
   const parseUpload = () => {
@@ -28,7 +32,7 @@ const CopyPasteInput = ({}) => {
     let profitArr = formState.profit.split('\n');
     let rakeArr = formState.rake.split('\n');
 
-    let statement = clubArr.map((club, i) => {
+    return clubArr.map((club, i) => {
       return {
         club,
         playername: playernameArr[i],
@@ -37,8 +41,6 @@ const CopyPasteInput = ({}) => {
         rake: rakeArr[i],
       };
     });
-    console.log(statement);
-    setUpload(statement);
   };
 
   return (
@@ -81,8 +83,9 @@ const CopyPasteInput = ({}) => {
         />
         <button onClick={onUpload}>Upload</button>
       </form>
-
+      {/* 
       {upload.length > 0 && <h1>{upload.length} entries uploaded</h1>}
+      {upload.length > 0 && <p>{upload.map((i) => Object.entries(i))}</p>} */}
     </>
   );
 };

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import Layout from '../components/Layout';
+import { useState, useEffect, useContext } from 'react';
+
 import Player from '../components/Player';
 import AddPlayer from '../components/AddPlayer';
 import AddRelationship from '../components/AddRelationship';
@@ -18,12 +18,12 @@ export default function Players() {
     return playerdata.players;
   };
   return (
-    <Layout>
+    <>
       <AddPlayer />
       <AddRelationship />
       {players.map((player) => (
         <Player player={player} />
       ))}
-    </Layout>
+    </>
   );
 }
