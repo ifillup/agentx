@@ -1,13 +1,16 @@
 import Layout from '../components/Layout';
 
-import { StatementProvider } from '../context/statementContext/StatementState';
+import { StatementProvider } from '../context/statementContext/statementState';
+import { PlayersProvider } from '../context/playersContext/playersState';
 
 function MyApp({ Component, pageProps }) {
   return (
     <StatementProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <PlayersProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </PlayersProvider>
     </StatementProvider>
   );
 }

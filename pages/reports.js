@@ -1,6 +1,6 @@
 import SelectPlayer from '../components/SelectPlayer';
 import Transaction from '../components/Transaction';
-import { StatementContext } from '../context/statementContext/StatementState';
+import { StatementContext } from '../context/statementContext/statementState';
 import { useContext } from 'react';
 
 const Reports = () => {

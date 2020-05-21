@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react';
-import StatementReducer from './StatementReducer';
+import StatementReducer from './statementReducer';
 
 // Initial state
 const initialState = {

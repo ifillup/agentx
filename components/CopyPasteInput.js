@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { StatementContext } from '../context/statementContext/StatementState';
+import { StatementContext } from '../context/statementContext/statementState';
 const CopyPasteInput = ({}) => {
   const [formState, setFormState] = useState({
     club: '',
@@ -8,7 +8,7 @@ const CopyPasteInput = ({}) => {
     profit: '',
     rake: '',
   });
-  // const [upload, setUpload] = useState([]);
+
   const changeHandler = (e) => {
     setFormState({
       ...formState,
