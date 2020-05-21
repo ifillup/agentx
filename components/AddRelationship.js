@@ -17,15 +17,17 @@ const AddRelationship = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group controlId='formAddPlayer'>
+      <Form.Group controlId='formAddRelationship'>
         <Form.Label>Player name</Form.Label>
 
         <Form.Control as='select' onChange={(e) => setPlayer(e.target.value)}>
+          <option selected label='Select player'></option>
           {players.map((player) => (
-            <option value={player.name}>{player.name}</option>
+            <option value={player.player}>{player.player}</option>
           ))}
         </Form.Control>
         <Form.Control as='select' onChange={(e) => setAccount(e.target.value)}>
+          <option selected label='Select account'></option>
           {transactions.map((t) => (
             <option value={t.playerID}>
               club:{t.club} player:{t.playername} id:{t.playerID}

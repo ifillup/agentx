@@ -8,12 +8,21 @@ export default (state, action) => {
     case 'ADD_ACCOUNT': //method needs work ;(
       return {
         ...state,
-        players: [
-          ...state.players,
-          { player: action.payload.player, account: action.payload.account },
-        ],
+        players: state.players.map((item) =>
+          item.player === action.payload.playerName
+            ? {
+                player: action.payload.playerName,
+                accounts: [
+                  action.payload.account,
+                  ...item.accounts, //can be undefined
+                ],
+              }
+            : item
+        ),
       };
     default:
       return state;
   }
 };
+// ...state.players,
+// { name: action.payload.player, account: action.payload.account }, ///accounts are an array add it

@@ -8,7 +8,7 @@ const AddPlayer = () => {
   const { addPlayer } = useContext(PlayersContext);
   const handleSubmit = (e) => {
     e.preventDefault();
-    addPlayer({ name: playerName });
+    addPlayer(playerName);
   };
   const handleChange = (e) => {
     setPlayerName(e.target.value);

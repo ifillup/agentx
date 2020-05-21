@@ -15,16 +15,16 @@ export const PlayersProvider = ({ children }) => {
 
   // Actions
 
-  function addPlayer(player) {
+  function addPlayer(playerName) {
     dispatch({
       type: 'ADD_PLAYER',
-      payload: player,
+      payload: { player: playerName, accounts: [] },
     });
   }
-  function addAccount(player, account) {
+  function addAccount(playerName, account) {
     dispatch({
       type: 'ADD_ACCOUNT',
-      payload: { player, account },
+      payload: { playerName, account },
     });
   }
 
