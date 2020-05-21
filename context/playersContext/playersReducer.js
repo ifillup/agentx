@@ -5,6 +5,14 @@ export default (state, action) => {
         ...state,
         players: [action.payload, ...state.players],
       };
+    case 'ADD_ACCOUNT': //method needs work ;(
+      return {
+        ...state,
+        players: [
+          ...state.players,
+          { player: action.payload.player, account: action.payload.account },
+        ],
+      };
     default:
       return state;
   }

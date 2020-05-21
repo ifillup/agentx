@@ -21,12 +21,19 @@ export const PlayersProvider = ({ children }) => {
       payload: player,
     });
   }
+  function addAccount(player, account) {
+    dispatch({
+      type: 'ADD_ACCOUNT',
+      payload: { player, account },
+    });
+  }
 
   return (
     <PlayersContext.Provider
       value={{
         players: state.players,
         addPlayer,
+        addAccount,
       }}
     >
       {children}

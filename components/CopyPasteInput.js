@@ -9,6 +9,28 @@ const CopyPasteInput = ({}) => {
     rake: '',
   });
 
+  //total, second for is for my sanity
+  const [total, setTotal] = useState('');
+  const onUploadTotal = (e) => {
+    let totalArr = total.split(/\t|\n/);
+    totalArr.pop();
+    let players = [];
+    for (let i = 0; i < totalArr.length; i = i + 5) {
+      let player = {
+        club: totalArr[i],
+        playername: totalArr[i + 1],
+        playerID: totalArr[i + 2],
+        profit: totalArr[i + 3],
+        rake: totalArr[i + 4],
+      };
+      players.push(player);
+    }
+
+    return addTransactions(players);
+  };
+
+  //above might be messy
+
   const changeHandler = (e) => {
     setFormState({
       ...formState,
@@ -21,6 +43,7 @@ const CopyPasteInput = ({}) => {
   const onUpload = (e) => {
     e.preventDefault();
     let upload = parseUpload();
+    console.log(upload);
     addTransactions(upload);
   };
 
@@ -83,6 +106,17 @@ const CopyPasteInput = ({}) => {
         />
         <button onClick={onUpload}>Upload</button>
       </form>
+      <h5>
+        messy upload, same format as above - C/P straight from spreadsheet
+      </h5>
+      <textarea
+        id='spreedsheet'
+        onChange={(e) => setTotal(e.target.value)}
+        placeholder='the lot'
+        rows='20'
+        cols='70'
+      />
+      <button onClick={onUploadTotal}>Upload</button>
       {/* 
       {upload.length > 0 && <h1>{upload.length} entries uploaded</h1>}
       {upload.length > 0 && <p>{upload.map((i) => Object.entries(i))}</p>} */}

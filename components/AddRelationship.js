@@ -1,25 +1,33 @@
 import { Button, Form } from 'react-bootstrap';
 import { PlayersContext } from '../context/playersContext/playersState';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { StatementContext } from '../context/statementContext/statementState';
 
 const AddRelationship = () => {
-  const { players } = useContext(PlayersContext);
+  const [player, setPlayer] = useState('');
+  const [account, setAccount] = useState('');
+  const { players, addAccount } = useContext(PlayersContext);
   const { transactions } = useContext(StatementContext);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('p', player, 'acc', account);
+    addAccount(player, account);
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group controlId='formAddPlayer'>
         <Form.Label>Player name</Form.Label>
 
-        <Form.Control as='select'>
+        <Form.Control as='select' onChange={(e) => setPlayer(e.target.value)}>
           {players.map((player) => (
-            <option>{player.name}</option>
+            <option value={player.name}>{player.name}</option>
           ))}
         </Form.Control>
-        <Form.Control as='select'>
+        <Form.Control as='select' onChange={(e) => setAccount(e.target.value)}>
           {transactions.map((t) => (
-            <option>
+            <option value={t.playerID}>
               club:{t.club} player:{t.playername} id:{t.playerID}
             </option>
           ))}

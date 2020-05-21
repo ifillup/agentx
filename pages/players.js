@@ -5,6 +5,7 @@ import Player from '../components/Player';
 import AddPlayer from '../components/AddPlayer';
 import AddRelationship from '../components/AddRelationship';
 import * as playerdata from '../player.json'; //TODO
+import UnsortedAccounts from '../components/UnsortedAccounts';
 
 export default function Players() {
   // const [players, setPlayers] = useState([]);
@@ -24,6 +25,7 @@ export default function Players() {
       <AddRelationship />
       {players.length > 0 &&
         players.map((player) => <Player player={player} />)}
+      <UnsortedAccounts />
     </>
   );
 }
