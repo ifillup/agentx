@@ -10,9 +10,24 @@ const Reports = () => {
   return (
     <>
       <SelectPlayer />
-      {transactions.map((transaction) => (
-        <Transaction transaction={transaction} />
-      ))}
+      <table class='table table-striped'>
+        <thead>
+          <tr>
+            <th>Club</th>
+            <th>Account</th>
+            <th>WinLoss</th>
+            <th>Rake</th>
+            <th>Rakeback</th>
+            <th>Total NET</th>
+            <th>MYR</th>
+          </tr>
+        </thead>
+        <tbody>
+          {transactions.map((transaction) => (
+            <Transaction transaction={transaction} />
+          ))}
+        </tbody>
+      </table>
     </>
   );
 };
