@@ -2,6 +2,7 @@ import SelectPlayer from '../components/SelectPlayer';
 import Transaction from '../components/Transaction';
 import { StatementContext } from '../context/statementContext/statementState';
 import { useContext } from 'react';
+import Transactions from '../components/Transactions';
 
 const Reports = () => {
   const { transactions } = useContext(StatementContext);
@@ -10,24 +11,7 @@ const Reports = () => {
   return (
     <>
       <SelectPlayer />
-      <table class='table table-striped'>
-        <thead>
-          <tr>
-            <th>Club</th>
-            <th>Account</th>
-            <th>WinLoss</th>
-            <th>Rake</th>
-            <th>Rakeback</th>
-            <th>Total NET</th>
-            <th>MYR</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map((transaction) => (
-            <Transaction transaction={transaction} />
-          ))}
-        </tbody>
-      </table>
+      <Transactions transactions={transactions} />
     </>
   );
 };

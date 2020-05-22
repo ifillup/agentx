@@ -2,14 +2,17 @@ import Layout from '../components/Layout';
 
 import { StatementProvider } from '../context/statementContext/statementState';
 import { PlayersProvider } from '../context/playersContext/playersState';
+import { ClubsProvider } from '../context/clubsContext/clubsState';
 
 function MyApp({ Component, pageProps }) {
   return (
     <StatementProvider>
       <PlayersProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <ClubsProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ClubsProvider>
       </PlayersProvider>
     </StatementProvider>
   );

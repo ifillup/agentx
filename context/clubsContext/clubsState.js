@@ -25,7 +25,7 @@ export const ClubsProvider = ({ children }) => {
   return (
     <ClubsContext.Provider
       value={{
-        clubs: state.players,
+        clubs: state.clubs,
         addClub,
       }}
     >

@@ -3,7 +3,7 @@ export default (state, action) => {
     case 'ADD_CLUB':
       return {
         ...state,
-        players: [action.payload, ...state.players],
+        clubs: [...state.clubs, action.payload],
       };
     default:
       return state;
