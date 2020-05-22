@@ -8,7 +8,7 @@ export default function Layout({ children, title = 'agentX' }) {
   const { addTransactions } = useContext(StatementContext);
   useEffect(() => {
     let transactions = JSON.parse(localStorage.getItem('transactions'));
-    if (transactions.length > 0) {
+    if (transactions && transactions.length > 0) {
       addTransactions(transactions);
     }
   }, []);
