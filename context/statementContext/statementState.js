@@ -20,6 +20,9 @@ export const StatementProvider = ({ children }) => {
       type: 'ADD_TRANSACTIONS',
       payload: transactions,
     });
+    //localstorage
+    console.log('setting LC', state.transactions);
+    localStorage.setItem('transactions', JSON.stringify(state.transactions));
   }
 
   return (

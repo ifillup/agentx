@@ -1,8 +1,18 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import { Nav } from 'react-bootstrap';
+import { useContext, useState, useEffect } from 'react';
+import { StatementContext } from '../context/statementContext/statementState';
 
 export default function Layout({ children, title = 'agentX' }) {
+  const { addTransactions } = useContext(StatementContext);
+  useEffect(() => {
+    let transactions = JSON.parse(localStorage.getItem('transactions'));
+    if (transactions.length > 0) {
+      addTransactions(transactions);
+    }
+  }, []);
+
   return (
     <div>
       <Head>

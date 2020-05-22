@@ -21,6 +21,7 @@ export const PlayersProvider = ({ children }) => {
       payload: { player: playerName, accounts: [] },
     });
   }
+  //takes a playername and account obj containing clubid, playerid, rb%
   function addAccount(playerName, account) {
     dispatch({
       type: 'ADD_ACCOUNT',

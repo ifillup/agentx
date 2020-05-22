@@ -6,7 +6,6 @@ import Transactions from '../components/Transactions';
 
 const Reports = () => {
   const { transactions } = useContext(StatementContext);
-  console.log('transactions on report page', transactions);
 
   return (
     <>
