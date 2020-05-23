@@ -17,6 +17,18 @@ export default (state, action) => {
             : item
         ),
       };
+    case 'LOAD_PLAYERS':
+      return {
+        ...state,
+        players: [...action.payload],
+      };
+    case 'DELETE_PLAYER':
+      return {
+        ...state,
+        players: state.players.filter(
+          (player) => player.id !== action.payload.id
+        ),
+      };
     default:
       return state;
   }

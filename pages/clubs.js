@@ -7,10 +7,11 @@ import * as clubdata from '../club.json'; //TODO
 
 export default function Clubs() {
   // const [clubs, setClubs] = useState([]);
-  const { clubs } = useContext(ClubsContext);
-  // useEffect(() => {
-  //   setClubs(getClubs());
-  // }, []);
+  const { clubs, getClubs } = useContext(ClubsContext);
+
+  useEffect(() => {
+    getClubs();
+  }, []);
 
   // const getClubs = () => {
   //   // TODO - async request for Clubs from db

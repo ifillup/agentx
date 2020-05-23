@@ -1,7 +1,15 @@
+import { useContext, useState } from 'react';
+import { PlayersContext } from '../context/playersContext/playersState';
 const Player = ({ player }) => {
+  const { deletePlayer } = useContext(PlayersContext);
   return (
     <>
-      <h3>{player.player}</h3>
+      <h3>{player.name}</h3>
+      <button onClick={() => deletePlayer(player.id)}>delete</button>
+      {player?.accounts &&
+        player.accounts.map((account) => (
+          <p>{`accountid: ${account.accountID} username: ${account.name} on club: ${account.clubID} rakeback: ${account.revenue_share}`}</p>
+        ))}
     </>
   );
 };

@@ -1,5 +1,12 @@
 const Report = ({ report }) => {
-  return <div>{Object.entries(report)}</div>;
+  return (
+    <>
+      {Object.entries(report)}
+      <div>
+        <div></div>
+      </div>
+    </>
+  );
 };
 
 export default Report;

@@ -31,7 +31,7 @@ const AddClub = () => {
           type='text'
           placeholder='Club name'
           onChange={changeHandler}
-          name='club'
+          name='name'
         />
         <Form.Control
           type='text'
@@ -47,6 +47,7 @@ const AddClub = () => {
         />
         <Form.Control
           type='number'
+          step='0.01'
           placeholder='Chip value'
           onChange={changeHandler}
           name='chipValue'

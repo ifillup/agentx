@@ -12,6 +12,7 @@ const CopyPasteInput = ({}) => {
   //total, second for is for my sanity
   const [total, setTotal] = useState('');
   const onUploadTotal = (e) => {
+    e.preventDefault();
     let totalArr = total.split(/\t|\n/);
     totalArr.pop();
     let players = [];

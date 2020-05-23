@@ -3,16 +3,12 @@ import Head from 'next/head';
 import { Nav } from 'react-bootstrap';
 import { useContext, useState, useEffect } from 'react';
 import { StatementContext } from '../context/statementContext/statementState';
+import { UserContext } from '../context/userContext/userState';
+import userReducer from '../context/userContext/userReducer';
 
 export default function Layout({ children, title = 'agentX' }) {
-  const { addTransactions } = useContext(StatementContext);
-  useEffect(() => {
-    let transactions = JSON.parse(localStorage.getItem('transactions'));
-    if (transactions && transactions.length > 0) {
-      addTransactions(transactions);
-    }
-  }, []);
-
+  //localstorage
+  const { user } = useContext(UserContext);
   return (
     <div>
       <Head>
@@ -47,6 +43,7 @@ export default function Layout({ children, title = 'agentX' }) {
           <Link href='/reports'>
             <a>Reports</a>
           </Link>
+          <div>{user?.username || 'please login'}</div>
         </Nav>
       </header>
 

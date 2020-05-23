@@ -4,7 +4,7 @@ import { useContext, useState } from 'react';
 import { StatementContext } from '../context/statementContext/statementState';
 
 const AddRelationship = () => {
-  const [player, setPlayer] = useState('');
+  const [playerID, setPlayer] = useState('');
   const [account, setAccount] = useState([]);
   const [rakeback, setRakeback] = useState('');
   const { players, addAccount } = useContext(PlayersContext);
@@ -12,8 +12,13 @@ const AddRelationship = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('p', player, 'acc', account);
-    addAccount(player, { account: account[0], club: account[1], rakeback });
+    console.log('p', playerID, 'acc', account);
+    addAccount(playerID, {
+      accountID: account[0],
+      clubID: account[1],
+      name: account[2],
+      revenue_share: rakeback,
+    });
   };
 
   return (
@@ -24,7 +29,7 @@ const AddRelationship = () => {
         <Form.Control as='select' onChange={(e) => setPlayer(e.target.value)}>
           <option selected label='Select player'></option>
           {players.map((player) => (
-            <option value={player.player}>{player.player}</option>
+            <option value={player.id}>{player.name}</option>
           ))}
         </Form.Control>
         <Form.Control
@@ -33,7 +38,7 @@ const AddRelationship = () => {
         >
           <option selected label='Select account'></option>
           {transactions.map((t) => (
-            <option value={[t.playerID, t.club]}>
+            <option value={[t.playerID, t.club, t.playername]}>
               club:{t.club} player:{t.playername} id:{t.playerID}
             </option>
           ))}

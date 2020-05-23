@@ -9,23 +9,18 @@ import UnsortedAccounts from '../components/UnsortedAccounts';
 
 export default function Players() {
   // const [players, setPlayers] = useState([]);
-  const { players } = useContext(PlayersContext);
-  // useEffect(() => {
-  //   setPlayers(getPlayers());
-  // }, []);
+  const { players, getPlayers } = useContext(PlayersContext);
+  useEffect(() => {
+    getPlayers();
+  }, []);
 
-  // const getPlayers = () => {
-  //   // TODO - async request for players from db
-
-  //   return players;
-  // };
   return (
     <>
       <AddPlayer />
       <AddRelationship />
       {players.length > 0 &&
         players.map((player) => <Player player={player} />)}
-      <UnsortedAccounts />
+      {/* <UnsortedAccounts /> */}
     </>
   );
 }
