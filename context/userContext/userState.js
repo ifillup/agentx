@@ -45,7 +45,7 @@ export const UserProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        'http://agentx-strapi.herokuapp.com/auth/local/register',
+        'https://agentx-strapi.herokuapp.com/auth/local/register',
         { username: email, email, password },
         config
       );
@@ -75,7 +75,7 @@ export const UserProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        'http://agentx-strapi.herokuapp.com/auth/local',
+        'https://agentx-strapi.herokuapp.com/auth/local',
         { identifier: email, password },
         config
       );

@@ -29,7 +29,7 @@ export const ClubsProvider = ({ children }) => {
     try {
       console.log('getting clubs');
       const res = await axios.get(
-        'http://agentx-strapi.herokuapp.com/clubs',
+        'https://agentx-strapi.herokuapp.com/clubs',
         config
       );
       console.log(res);
@@ -47,7 +47,7 @@ export const ClubsProvider = ({ children }) => {
     try {
       console.log('sending', { ...club, createdby: user.email });
       const res = await axios.post(
-        'http://agentx-strapi.herokuapp.com/clubs',
+        'https://agentx-strapi.herokuapp.com/clubs',
         { ...club, createdby: user.email },
         config
       );
@@ -66,7 +66,7 @@ export const ClubsProvider = ({ children }) => {
     try {
       console.log('sending', id);
       const res = await axios.delete(
-        `http://agentx-strapi.herokuapp.com/clubs/${id}`,
+        `https://agentx-strapi.herokuapp.com/clubs/${id}`,
         config
       );
       console.log(res);

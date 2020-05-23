@@ -28,7 +28,7 @@ export const PlayersProvider = ({ children }) => {
     try {
       console.log('getting players for database');
       const res = await axios.get(
-        'http://agentx-strapi.herokuapp.com/players',
+        'https://agentx-strapi.herokuapp.com/players',
         config
       );
       console.log(res);
@@ -45,7 +45,7 @@ export const PlayersProvider = ({ children }) => {
     try {
       console.log('sending', playerName);
       const res = await axios.post(
-        'http://agentx-strapi.herokuapp.com/players',
+        'https://agentx-strapi.herokuapp.com/players',
         { name: playerName },
         config
       );
@@ -62,7 +62,7 @@ export const PlayersProvider = ({ children }) => {
     try {
       console.log('sending', id);
       const res = await axios.delete(
-        `http://agentx-strapi.herokuapp.com/players/${id}`,
+        `https://agentx-strapi.herokuapp.com/players/${id}`,
         config
       );
       console.log(res);
@@ -79,7 +79,7 @@ export const PlayersProvider = ({ children }) => {
     try {
       console.log('add and tag account id', account, 'to player', playerID);
       const res = await axios.post(
-        'http://agentx-strapi.herokuapp.com/accounts',
+        'https://agentx-strapi.herokuapp.com/accounts',
         { ...account, player: playerID },
         config
       );
