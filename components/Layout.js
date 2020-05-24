@@ -5,7 +5,7 @@ import { useContext, useState, useEffect } from 'react';
 import { StatementContext } from '../context/statementContext/statementState';
 import { UserContext } from '../context/userContext/userState';
 import userReducer from '../context/userContext/userReducer';
-
+import Register from '../components/Register';
 export default function Layout({ children, title = 'agentX' }) {
   //localstorage
   const { user } = useContext(UserContext);
@@ -47,7 +47,7 @@ export default function Layout({ children, title = 'agentX' }) {
         </Nav>
       </header>
 
-      {children}
+      {user === null ? <Register /> : children}
 
       <footer>{'Copyright agentx 2020'}</footer>
       <style jsx global>{`

@@ -3,18 +3,18 @@ export default (state, action) => {
     case 'ADD_PLAYER':
       return {
         ...state,
-        players: [action.payload, ...state.players],
+        players: [...state.players, action.payload],
       };
     case 'ADD_ACCOUNT':
       return {
         ...state,
-        players: state.players.map((item) =>
-          item.player === action.payload.playerName
+        players: state.players.map((player) =>
+          player.id === action.payload.player.id
             ? {
-                player: action.payload.playerName,
-                accounts: [action.payload.account, ...item.accounts],
+                ...player,
+                accounts: [...player.accounts, action.payload],
               }
-            : item
+            : player
         ),
       };
     case 'LOAD_PLAYERS':

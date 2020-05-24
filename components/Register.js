@@ -21,7 +21,9 @@ const Register = ({}) => {
       <Form.Group controlId='formBasicEmail'>
         <Form.Label>Login / Register </Form.Label>
         <Form.Control
+          name='email'
           type='email'
+          value={email}
           placeholder='Enter email'
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -30,7 +32,9 @@ const Register = ({}) => {
       <Form.Group controlId='formBasicPassword'>
         <Form.Label>Password</Form.Label>
         <Form.Control
+          name='password'
           type='password'
+          value={password}
           placeholder='Password'
           onChange={(e) => setPassword(e.target.value)}
         />

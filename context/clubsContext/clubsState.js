@@ -45,10 +45,10 @@ export const ClubsProvider = ({ children }) => {
   //add club to both state and db
   async function addClub(club) {
     try {
-      console.log('sending', { ...club, createdby: user.email });
+      console.log('sending', { club });
       const res = await axios.post(
         'https://agentx-strapi.herokuapp.com/clubs',
-        { ...club, createdby: user.email },
+        { ...club },
         config
       );
       console.log(res);

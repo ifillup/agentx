@@ -2,6 +2,7 @@ import { createContext, useReducer } from 'react';
 import PlayersReducer from './playersReducer';
 import axios from 'axios';
 import { UserContext } from '../userContext/userState';
+
 import { useContext } from 'react';
 // Initial state
 const initialState = {
@@ -17,6 +18,7 @@ export const PlayersProvider = ({ children }) => {
 
   //need user context
   const { jwt, user } = useContext(UserContext);
+
   // Actions
   const config = {
     headers: {
@@ -28,7 +30,7 @@ export const PlayersProvider = ({ children }) => {
     try {
       console.log('getting players for database');
       const res = await axios.get(
-        'https://agentx-strapi.herokuapp.com/players',
+        `https://agentx-strapi.herokuapp.com/players`,
         config
       );
       console.log(res);
@@ -84,10 +86,10 @@ export const PlayersProvider = ({ children }) => {
         config
       );
       console.log(res);
-      // dispatch({
-      //   type: 'ADD_ACCOUNT',
-      //   payload: res.data,
-      // });
+      dispatch({
+        type: 'ADD_ACCOUNT',
+        payload: res.data,
+      });
     } catch (err) {
       console.log(err);
     }

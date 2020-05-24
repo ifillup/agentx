@@ -16,6 +16,13 @@ export default function (state, action) {
         isAuthenticated: true,
         loading: false,
       };
+    case 'SETUP_COMPLETE':
+      return {
+        ...state,
+        ...payload,
+        isAuthenticated: true,
+        loading: false,
+      };
     case 'LOGIN_SUCCESS':
       return {
         ...state,

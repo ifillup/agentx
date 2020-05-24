@@ -2,6 +2,7 @@ import { Button, Form } from 'react-bootstrap';
 import { PlayersContext } from '../context/playersContext/playersState';
 import { useContext, useState } from 'react';
 import { StatementContext } from '../context/statementContext/statementState';
+import { ClubsContext } from '../context/clubsContext/clubsState';
 
 const AddRelationship = () => {
   const [playerID, setPlayer] = useState('');
@@ -9,15 +10,18 @@ const AddRelationship = () => {
   const [rakeback, setRakeback] = useState('');
   const { players, addAccount } = useContext(PlayersContext);
   const { transactions } = useContext(StatementContext);
+  const { clubs } = useContext(ClubsContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('p', playerID, 'acc', account);
+    console.log('to club', clubs.find((club) => club.clubID == account[1]).id);
     addAccount(playerID, {
       accountID: account[0],
       clubID: account[1],
       name: account[2],
       revenue_share: rakeback,
+      club: clubs.find((club) => club.clubID == account[1]).id,
     });
   };
 

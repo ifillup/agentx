@@ -19,6 +19,11 @@ export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
   // Actions
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
   // Load User
   const loadUser = async () => {
     setAuthToken(localStorage.token);
@@ -37,14 +42,8 @@ export const UserProvider = ({ children }) => {
 
   // Register User
   const register = async (email, password) => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
     try {
-      const res = await axios.post(
+      let res = await axios.post(
         'https://agentx-strapi.herokuapp.com/auth/local/register',
         { username: email, email, password },
         config
@@ -55,6 +54,7 @@ export const UserProvider = ({ children }) => {
         type: 'REGISTER_SUCCESS',
         payload: res.data,
       });
+      accountSetup(res.data);
       // localStorage.setItem('user', JSON.stringify(res.data));
       //  loadUser(); ///comment me
     } catch (err) {
@@ -63,6 +63,25 @@ export const UserProvider = ({ children }) => {
         payload: err.response.data.msg,
       });
     }
+  };
+
+  // Setup agent account (once)
+  const accountSetup = async ({ jwt, user }) => {
+    console.log('setting up new agent');
+    const res = await axios.post(
+      'https://agentx-strapi.herokuapp.com/agents',
+      {},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    dispatch({
+      type: 'SETUP_COMPLETE',
+      payload: res.data,
+    });
   };
 
   // Login User
@@ -85,7 +104,7 @@ export const UserProvider = ({ children }) => {
         payload: res.data,
       });
       console.log(res);
-      localStorage.setItem('user', JSON.stringify(res.data));
+
       // loadUser();
     } catch (err) {
       dispatch({

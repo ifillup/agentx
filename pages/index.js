@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       <h1>{process.env.NEXT_PUBLIC_BASE_URL}</h1>
-      {isAuthenticated ? 'Welcome: ' + user.email : <Register />}
+      <h3>Welcome: {user.email} </h3>
     </>
   );
 }
