@@ -13,13 +13,19 @@ const SelectPlayer = ({}) => {
   //   e.preventDefault();
   //   handleRequestReport(report);
   // };
+  // acounts is an array of accountidclubid keys for matching with transactions
   let accounts;
   if (report) {
     accounts = players
       .find((player) => player.id === report)
-      .accounts.map((acc) => acc.accountID);
+      .accounts.map((acc) => `${acc.accountID}${acc.clubID}`);
     console.log(accounts);
   }
+  // if (report) {
+  //   accounts = report.accounts?.map((acc) => `${acc.accountID}${acc.clubID}`);
+
+  //   console.log(accounts);
+  // }
 
   return (
     <>
@@ -42,12 +48,36 @@ const SelectPlayer = ({}) => {
           .filter(players.player.id === report)
           .map((t) => <Transaction transaction={transaction} />)} */}
       {/* {report && console.log(players.find((player) => player.id === report))} */}
-      {report &&
-        transactions
-          .filter((t) => accounts.includes(+t.playerID))
-          .map((t) => <Transaction transaction={t} />)}
+      {report && `generating report for playerid: ${report}`}
+      <table class='table table-striped'>
+        <thead>
+          <tr>
+            <th>Club</th>
+            <th>Account</th>
+            <th>Account Name</th>
+            <th>WinLoss</th>
+            <th>Rake Paid</th>
+            <th>Rakeback</th>
+            <th>Total NET</th>
+            <th>MYR</th>
+          </tr>
+        </thead>
+        <tbody>
+          {report &&
+            accounts &&
+            accounts.length > 0 &&
+            transactions
+              .filter((t) => accounts.includes(`${t.playerID}${t.club}`))
+              .map((t) => <Transaction player={report} transaction={t} />)}
+        </tbody>
+      </table>
     </>
   );
 };
 
 export default SelectPlayer;
+
+//for every transaction we see if it belongs to selected player
+//if it does we print it, then retrive the appropriate rakeback
+//the retrive the appropirate club for chip conversion
+//then print it

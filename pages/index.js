@@ -3,14 +3,16 @@ import { PlayersContext } from '../context/playersContext/playersState';
 import { useContext, useState, useEffect } from 'react';
 import { StatementContext } from '../context/statementContext/statementState';
 import { UserContext } from '../context/userContext/userState';
+import { ClubsContext } from '../context/clubsContext/clubsState';
 export default function Home() {
   const [savedUser, setSavedUser] = useState('');
   const { user, isAuthenticated } = useContext(UserContext);
-  // useEffect(() => {
-  //   if (!user) {
-  //     setSavedUser(JSON.parse(localStorage.getItem('user')));
-  //   }
-  // }, []);
+  const { getPlayers } = useContext(PlayersContext);
+  const { getClubs } = useContext(ClubsContext);
+  useEffect(() => {
+    getPlayers();
+    getClubs();
+  }, []);
 
   return (
     <>

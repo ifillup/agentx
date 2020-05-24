@@ -1,14 +1,30 @@
-const Transaction = ({ transaction }) => {
+import { useContext, useState } from 'react';
+import { ClubsContext } from '../context/clubsContext/clubsState';
+import { PlayersContext } from '../context/playersContext/playersState';
+
+const Transaction = ({ player, transaction: t }) => {
+  const { clubs } = useContext(ClubsContext);
+  const { players } = useContext(PlayersContext);
+  const { chipValue } = clubs.find((club) => club.clubID == t.club);
+  const rakeback =
+    players
+      .find((p) => p.id === player)
+      ?.accounts.filter(
+        (acc) => acc.accountID == t.playerID && acc.clubID == t.club
+      )[0].revenue_share / 100;
+  console.log(rakeback);
+  let total = +t.rake * rakeback + +t.profit;
   return (
     <tr>
-      <td>{transaction.club}</td>
-      <td>{transaction.playername}</td>
-      <td>{transaction.playerID}</td>
-      <td>{transaction.rake}</td>
-      <td>{+transaction.rake * 0.5}</td>
-      <td>{transaction.profit}</td>
+      <td>{t.club}</td>
+      <td>{t.playerID}</td>
+      <td>{t.playername}</td>
+      <td>{t.profit}</td>
+      <td>{t.rake}</td>
+      <td>{+t.rake * rakeback}</td>
+      <td>{total}</td>
       <td>
-        <span class='net'>{+transaction.profit + +transaction.rake * 0.5}</span>
+        <span class='net'>{total * chipValue}</span>
       </td>
     </tr>
   );

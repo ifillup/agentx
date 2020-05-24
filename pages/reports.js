@@ -14,8 +14,8 @@ const Reports = () => {
   return (
     <>
       <SelectPlayer handleRequestReport={handleRequestReport} />
-      {report !== '' && <Report report={report} />}
-      <Transactions transactions={transactions} />
+      {/* {report !== '' && <Report report={report} />}
+      <Transactions transactions={transactions} /> */}
     </>
   );
 };
