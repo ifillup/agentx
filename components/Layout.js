@@ -7,8 +7,8 @@ import { UserContext } from '../context/userContext/userState';
 import userReducer from '../context/userContext/userReducer';
 import Register from '../components/Register';
 export default function Layout({ children, title = 'agentX' }) {
-  //localstorage
   const { user } = useContext(UserContext);
+
   return (
     <div>
       <Head>

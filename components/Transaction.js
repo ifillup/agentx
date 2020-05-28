@@ -1,19 +1,24 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { ClubsContext } from '../context/clubsContext/clubsState';
 import { PlayersContext } from '../context/playersContext/playersState';
 
-const Transaction = ({ player, transaction: t }) => {
+const Transaction = ({ player, transaction: t, sumTotal, formatNumber }) => {
   const { clubs } = useContext(ClubsContext);
   const { players } = useContext(PlayersContext);
   const { chipValue } = clubs.find((club) => club.clubID == t.club);
   const rakeback =
-    players
-      .find((p) => p.id === player)
-      ?.accounts.filter(
-        (acc) => acc.accountID == t.playerID && acc.clubID == t.club
-      )[0].revenue_share / 100;
+    player.accounts.filter(
+      (acc) => acc.accountID == t.playerID && acc.clubID == t.club
+    )[0].revenue_share / 100;
   console.log(rakeback);
   let total = +t.rake * rakeback + +t.profit;
+
+  let totalCoverted = total * chipValue;
+
+  useEffect(() => {
+    sumTotal(totalCoverted);
+    console.log('sending to total $$:', totalCoverted);
+  }, [t]);
   return (
     <tr>
       <td>{t.club}</td>
@@ -21,11 +26,9 @@ const Transaction = ({ player, transaction: t }) => {
       <td>{t.playername}</td>
       <td>{t.profit}</td>
       <td>{t.rake}</td>
-      <td>{+t.rake * rakeback}</td>
-      <td>{total}</td>
-      <td>
-        <span class='net'>{total * chipValue}</span>
-      </td>
+      <td>{formatNumber(+t.rake * rakeback)}</td>
+      <td>{formatNumber(total)}</td>
+      <td>{formatNumber(totalCoverted)}</td>
     </tr>
   );
 };
