@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { PlayersContext } from '../context/playersContext/playersState';
 import { StatementContext } from '../context/statementContext/statementState';
 import Transaction from './Transaction';
+import Total from './Total';
 
 const Report = ({ player }) => {
   const { players } = useContext(PlayersContext);
@@ -61,7 +62,7 @@ const Report = ({ player }) => {
         </tbody>
       </table>
       {console.log('total equals', total, 'on render')}
-      <h1>{formatNumber(total)}</h1>
+      <Total total={total} />
     </>
   );
 };

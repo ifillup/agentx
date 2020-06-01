@@ -1,10 +1,10 @@
 import { Button, Form } from 'react-bootstrap';
 import { useContext, useState } from 'react';
 import { ClubsContext } from '../context/clubsContext/clubsState';
-
+import { Container, Row } from 'react-bootstrap';
 const AddClub = () => {
   const [club, setClub] = useState({
-    currency: 'RMB',
+    currency: 'MYR',
     platform: 'PPP',
   });
   const { addClub } = useContext(ClubsContext);
@@ -25,38 +25,39 @@ const AddClub = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <Form.Label>
+        <em>Add a new Club</em>
+      </Form.Label>
       <Form.Group controlId='formAddPlayer'>
         <Form.Label>Club name</Form.Label>
         <Form.Control
           type='text'
-          placeholder='Club name'
+          placeholder='ie Asia Union'
           onChange={changeHandler}
           name='name'
         />
+        <Form.Label>Club ID</Form.Label>
         <Form.Control
           type='text'
-          placeholder='ClubID'
+          placeholder='6 digit club id code'
           onChange={changeHandler}
           name='clubID'
         />
-        <Form.Control
-          type='text'
-          placeholder='Club code'
-          onChange={changeHandler}
-          name='code'
-        />
+        <Form.Label>Chip value</Form.Label>
         <Form.Control
           type='number'
           step='0.01'
-          placeholder='Chip value'
+          placeholder='if 2.4 chips equal 1 MYR 2.4'
           onChange={changeHandler}
           name='chipValue'
         />
+        <Form.Label>Currency</Form.Label>
         <Form.Control as='select' onChange={changeHandler} name='currency'>
-          <option selected value='RMB'>
+          <option selected value='MYR'>
             RMB
           </option>
         </Form.Control>
+        <Form.Label>Platform</Form.Label>
         <Form.Control as='select' onChange={changeHandler} name='platform'>
           <option selected value='PPP'>
             PPPoker

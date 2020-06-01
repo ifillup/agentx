@@ -115,7 +115,10 @@ export const UserProvider = ({ children }) => {
   };
 
   // Logout
-  const logout = () => dispatch({ type: 'LOGOUT' });
+  const logout = () => {
+    console.log('logging out user');
+    dispatch({ type: 'LOGOUT' });
+  };
 
   return (
     <UserContext.Provider

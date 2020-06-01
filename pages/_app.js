@@ -4,6 +4,7 @@ import { StatementProvider } from '../context/statementContext/statementState';
 import { PlayersProvider } from '../context/playersContext/playersState';
 import { ClubsProvider } from '../context/clubsContext/clubsState';
 import { UserProvider } from '../context/userContext/userState';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MyApp({ Component, pageProps }) {
   //spin up the heroku instance on page load

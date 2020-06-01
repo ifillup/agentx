@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
-
+import { Container, Row, Col } from 'react-bootstrap';
 import { ClubsContext } from '../context/clubsContext/clubsState';
 import Club from '../components/Club';
+import ClubList from '../components/ClubList';
 import AddClub from '../components/AddClub';
-import * as clubdata from '../club.json'; //TODO
 
 export default function Clubs() {
   // const [clubs, setClubs] = useState([]);
@@ -20,8 +20,19 @@ export default function Clubs() {
   // };
   return (
     <>
-      <AddClub />
-      {clubs.length > 0 && clubs.map((club) => <Club club={club} />)}
+      <Container>
+        <Row>
+          <Col>
+            <AddClub />
+          </Col>
+          <Col>unknown clubs list</Col>
+        </Row>
+        <Row>
+          <Col>
+            <ClubList clubs={clubs} />
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }

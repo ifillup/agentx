@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { PlayersContext } from '../context/playersContext/playersState';
-
+import { Container, Row, Col } from 'react-bootstrap';
 import Player from '../components/Player';
 import AddPlayer from '../components/AddPlayer';
 import AddRelationship from '../components/AddRelationship';
@@ -16,10 +16,22 @@ export default function Players() {
 
   return (
     <>
-      <AddPlayer />
-      <AddRelationship />
-      {players.length > 0 &&
-        players.map((player) => <Player player={player} />)}
+      <Container>
+        <Row>
+          <Col>
+            <AddPlayer />
+            <AddRelationship />
+          </Col>
+          <Col>unknown accounts list</Col>
+        </Row>
+        <Row>
+          <Col>
+            {players.length > 0 &&
+              players.map((player) => <Player player={player} />)}
+          </Col>
+        </Row>
+      </Container>
+
       {/* <UnsortedAccounts /> */}
     </>
   );

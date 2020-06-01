@@ -4,9 +4,14 @@ const Club = ({ club }) => {
   const { deleteClub } = useContext(ClubsContext);
   return (
     <>
-      {`club: ${club.name} ID: ${club.clubID} platform: ${club.platform} chip-value: ${club.chipValue}`}
-      <button onClick={() => deleteClub(club.id)}>delete</button>
-      <br />
+      <tr>
+        <th>{club.platform}</th>
+        <th>{club.name}</th>
+        <th>{club.clubID}</th>
+        <th>{club.chipValue}</th>
+      </tr>
+
+      {/* <button onClick={() => deleteClub(club.id)}>delete</button> */}
     </>
   );
 };
