@@ -12,7 +12,6 @@ const Reports = () => {
 
   const handleRequestReport = (report) => {
     setReport(report);
-    console.log(report);
   };
   return (
     <>

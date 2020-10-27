@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useLayoutEffect } from 'react';
 import { PlayersContext } from '../context/playersContext/playersState';
 import { StatementContext } from '../context/statementContext/statementState';
 import Transaction from './Transaction';
@@ -10,12 +10,10 @@ const Report = ({ player }) => {
   const [total, setTotal] = useState(0);
   const [playerTransactions, setPlayerTransactions] = useState(0);
 
-  // useEffect(() => {
-  //   return () => {
-  //     setTotal(0);
-  //     console.log('use effect resetting total to zero because report changed');
-  //   };
-  // }, [player]);
+  useLayoutEffect(() => {
+    setTotal(0);
+    
+  }, [player]);
 
   const formatNumber = (num) => {
     return Math.round(num * 100) / 100;
@@ -43,8 +41,8 @@ const Report = ({ player }) => {
             <th>WinLoss</th>
             <th>Rake Paid</th>
             <th>Rakeback</th>
-            <th>Total NET</th>
-            <th>MYR</th>
+            <th>Total Chips</th>
+            <th>Total USD</th>
           </tr>
         </thead>
         <tbody>
@@ -61,8 +59,8 @@ const Report = ({ player }) => {
               ))}
         </tbody>
       </table>
-      {console.log('total equals', total, 'on render')}
-      <Total total={total} />
+      
+      {transactions.length >0 ? <Total total={total} formatNumber={formatNumber}  /> : 'Input your results to generate reports' }
     </>
   );
 };

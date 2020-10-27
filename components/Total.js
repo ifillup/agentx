@@ -1,5 +1,5 @@
-const Total = ({ total }) => {
-  return <h1>Total: {total} MYR</h1>;
+const Total = ({ total, formatNumber }) => {
+  return <h1>Total: {formatNumber(total)} USD</h1>;
 };
 
 export default Total;

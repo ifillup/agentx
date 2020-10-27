@@ -1,25 +1,44 @@
 import { useContext, useState } from 'react';
+import { Accordion, Card, Button, Table } from 'react-bootstrap';
 import { PlayersContext } from '../context/playersContext/playersState';
-const Player = ({ player }) => {
+const Player = ({ player, eventKey }) => {
   const { deletePlayer } = useContext(PlayersContext);
   return (
-    <>
-      <h3>{player.name}</h3>
-      <button onClick={() => deletePlayer(player.id)}>delete</button>
-      {player?.accounts &&
-        player.accounts.map((account) => (
-          <p>{`accountid: ${account.accountID} username: ${account.name} on club: ${account.clubID} rakeback: ${account.revenue_share}`}</p>
-        ))}
-    </>
+  
+    <Card>
+      
+      <Accordion.Toggle eventKey={""+eventKey} as={Card.Header}> <div className="d-flex justify-content-between">{player.name} <span >V</span></div> </Accordion.Toggle>
+      <Accordion.Collapse eventKey={""+eventKey}>
+      <Card.Body>
+        <Table striped bordered hover size="sm">
+          <thead>
+            <tr>
+              <th>account id</th>
+              <th>username</th>
+              <th>club</th>
+              <th>rakeback</th>
+            </tr>
+          </thead>
+          <tbody>
+          {player?.accounts &&
+          player.accounts.map((account) => (
+            <tr>
+              <td>{account.accountID}</td>
+              <td>{account.name}</td>
+              <td>{account.clubID}</td>
+              <td>{account.revenue_share}</td>
+              </tr>
+          ))}
+              </tbody>
+        </Table>
+        <button onClick={() => deletePlayer(player.id)}>Delete {player.name}</button>
+      </Card.Body>
+      </Accordion.Collapse>
+    </Card>
+    
+    
   );
 };
 
 export default Player;
 
-// <ul>
-// {player.accounts.map((acc) => (
-//   <li>{acc}</li>
-// ))}
-// {/* <h3>Has {player.accounts.length} accounts registered with you</h3> */}
-// {/* {player.accounts.map((account) => Object.entries(account))} */}
-// </ul>

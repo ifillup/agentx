@@ -15,20 +15,7 @@ export default function Layout({ children, title = 'agentX' }) {
         <title>{title}</title>
         <meta charSet='utf-8' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-        {/* <link
-          href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css'
-          rel='stylesheet'
-          integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk'
-          crossOrigin='anonymous'
-        ></link> */}
-        {/* <link
-          rel='stylesheet'
-          href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'
-        />
-        <link
-          rel='stylesheet'
-          href='https://fonts.googleapis.com/icon?family=Material+Icons'
-        /> */}
+       
       </Head>
       <Navbar sticky='top'>
         <Link href='/' passHref>
@@ -55,19 +42,23 @@ export default function Layout({ children, title = 'agentX' }) {
           {user && <Nav.Link onClick={logout}>Logout</Nav.Link>}
         </Nav>
       </Navbar>
-
-      {user === null ? <Register /> : children}
-
-      <footer className='fixed-bottom'>
+    
+      {user === null ? <Register /> : <Container className='' fluid={true}>{children}</Container>}
+      
+      <footer className=''>
         Copyright {title} {new Date().getFullYear()}
       </footer>
       <style jsx global>{`
-        body {
+        #__next {
           min-height: 100vh;
+          margin-bottom: 24px;
         }
-        // .container {
-        //   max-width: 400px;
-        // }
+        footer {
+          
+          position: fixed;
+          bottom: 0;
+        }
+        
       `}</style>
     </>
   );

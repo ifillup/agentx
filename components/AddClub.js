@@ -47,14 +47,14 @@ const AddClub = () => {
         <Form.Control
           type='number'
           step='0.01'
-          placeholder='if 2.4 chips equal 1 MYR 2.4'
+          placeholder='if 5 chips equal 1 USD enter 5'
           onChange={changeHandler}
           name='chipValue'
         />
         <Form.Label>Currency</Form.Label>
         <Form.Control as='select' onChange={changeHandler} name='currency'>
-          <option selected value='MYR'>
-            RMB
+          <option selected value='USD'>
+            USD
           </option>
         </Form.Control>
         <Form.Label>Platform</Form.Label>

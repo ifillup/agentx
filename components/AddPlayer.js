@@ -23,7 +23,7 @@ const AddPlayer = () => {
           onChange={handleChange}
         />
         <Form.Text className='text-muted'>
-          A player is a grouping of accounts for accounting purposes
+        Associate individual accounts with a player
         </Form.Text>
       </Form.Group>
       <Button variant='primary' type='submit'>

@@ -6,6 +6,8 @@ import { Row } from 'react-bootstrap';
 const Register = ({}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [signUp, setSignUp] = useState(false);
   const { login, register } = useContext(UserContext);
 
   const handleSubmit = (e) => {
@@ -16,9 +18,12 @@ const Register = ({}) => {
     e.preventDefault();
     register(email, password);
   };
+  
 
   return (
     <div>
+      <Button variant={signUp || 'outline-primary'} onClick={e => setSignUp(false)}>Sign In</Button>
+      <Button variant={signUp && 'outline-primary'} onClick={e => setSignUp(true)}>Registration</Button>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId='formBasicEmail'>
           <Form.Label>Email address</Form.Label>
@@ -41,15 +46,31 @@ const Register = ({}) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId='formBasicCheckbox'>
+        {signUp && (
+          <Form.Group controlId='formBasicPasswordConfirm'>
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
+            name='confirmPassword'
+            type='password'
+            value={confirmPassword}
+            placeholder='Confirm Password'
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+         {password === confirmPassword || (<Form.Text id="passwordHelpBlock" muted>
+           Passwords must match.
+          </Form.Text>)}
+          </Form.Group>
+        
+        )}
+        {/* <Form.Group controlId='formBasicCheckbox'>
           <Form.Check type='checkbox' label='Keep me logged in' />
-        </Form.Group>
-        <Button variant='primary' type='submit'>
-          Login
-        </Button>
-        <Button variant='outline-primary' onClick={handleRegistration}>
+        </Form.Group> */}
+        {signUp ? (<Button variant='primary' disabled={password !== confirmPassword} onClick={handleRegistration}>
           Register
-        </Button>
+        </Button>) : (<Button variant='primary' type='submit'>
+          Login
+        </Button>)} 
+        
       </Form>
       <style jsx>{`
         div {

@@ -4,35 +4,33 @@ import { ClubsContext } from '../context/clubsContext/clubsState';
 import Club from '../components/Club';
 import ClubList from '../components/ClubList';
 import AddClub from '../components/AddClub';
+import UnknownClubs from '../components/UnknownClubs';
 
 export default function Clubs() {
-  // const [clubs, setClubs] = useState([]);
+  
   const { clubs, getClubs } = useContext(ClubsContext);
 
   useEffect(() => {
     getClubs();
   }, []);
-
-  // const getClubs = () => {
-  //   // TODO - async request for Clubs from db
-
-  //   return clubdata.clubs;
-  // };
+  
   return (
     <>
-      <Container>
+      
         <Row>
           <Col>
             <AddClub />
           </Col>
-          <Col>unknown clubs list</Col>
+          <Col>
+          <UnknownClubs />
+          </Col>
         </Row>
         <Row>
           <Col>
             <ClubList clubs={clubs} />
           </Col>
         </Row>
-      </Container>
+      
     </>
   );
 }

@@ -10,8 +10,8 @@ const Transactions = ({ transactions }) => {
           <th>WinLoss</th>
           <th>Rake</th>
           <th>Rakeback</th>
-          <th>Total NET</th>
-          <th>MYR</th>
+          <th>Total Chips</th>
+          <th>TOTAL USD</th>
         </tr>
       </thead>
       <tbody>

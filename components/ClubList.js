@@ -13,7 +13,7 @@ const ClubList = ({ clubs }) => {
           </tr>
         </thead>
         <tbody>
-          {clubs.length > 0 && clubs.map((club) => <Club club={club} />)}
+          {clubs.length > 0 && clubs.map((club) => <Club key={club.id} club={club} />)}
         </tbody>
       </Table>
       <style jsx>{`

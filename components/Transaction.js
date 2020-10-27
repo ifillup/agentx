@@ -17,7 +17,6 @@ const Transaction = ({ player, transaction: t, sumTotal, formatNumber }) => {
 
   useEffect(() => {
     sumTotal(totalCoverted);
-    console.log('sending to total $$:', totalCoverted);
   }, [t]);
   return (
     <tr>
@@ -34,11 +33,3 @@ const Transaction = ({ player, transaction: t, sumTotal, formatNumber }) => {
 };
 
 export default Transaction;
-
-{
-  /* club: '',
-    playername: '',
-    playerID: '',
-    profit: '',
-    rake: '', */
-}
