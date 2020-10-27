@@ -1,14 +1,25 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, Spinner } from 'react-bootstrap';
 import { useContext, useState, useEffect } from 'react';
 import { StatementContext } from '../context/statementContext/statementState';
+import { ClubsContext } from '../context/clubsContext/clubsState';
 import { UserContext } from '../context/userContext/userState';
+import { PlayersContext } from '../context/playersContext/playersState';
 import userReducer from '../context/userContext/userReducer';
 import Register from '../components/Register';
 export default function Layout({ children, title = 'agentX' }) {
   const { user, logout } = useContext(UserContext);
-
+  const { getClubs } = useContext(ClubsContext);
+  const { getPlayers } = useContext(PlayersContext);
+  //spin up the heroku instance on page load
+  const [ready, setReady] = useState(false)
+  useEffect(() => {
+    fetch('https://agentx-strapi.herokuapp.com/').then(res => setReady(res.status < 400));
+    getClubs();
+    getPlayers();
+  }, []);
+  
   return (
     <>
       <Head>
@@ -45,6 +56,7 @@ export default function Layout({ children, title = 'agentX' }) {
     
       {user === null ? <Register /> : <Container className='' fluid={true}>{children}</Container>}
       
+      {!ready && (<div className="d-flex"><Spinner animation='grow' ></Spinner> <span>it's been a while, let me start the development server </span> </div>)}
       <footer className=''>
         Copyright {title} {new Date().getFullYear()}
       </footer>

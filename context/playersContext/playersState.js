@@ -28,7 +28,6 @@ export const PlayersProvider = ({ children }) => {
   };
   async function getPlayers() {
     try {
-      console.log('getting players for database');
       const res = await axios.get(
         `https://agentx-strapi.herokuapp.com/players`,
         config
@@ -45,7 +44,6 @@ export const PlayersProvider = ({ children }) => {
 
   async function addPlayer(playerName) {
     try {
-      console.log('sending', playerName);
       const res = await axios.post(
         'https://agentx-strapi.herokuapp.com/players',
         { name: playerName },
@@ -62,7 +60,6 @@ export const PlayersProvider = ({ children }) => {
   }
   const deletePlayer = async (id) => {
     try {
-      console.log('sending', id);
       const res = await axios.delete(
         `https://agentx-strapi.herokuapp.com/players/${id}`,
         config

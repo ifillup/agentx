@@ -6,7 +6,6 @@ const Player = ({ player, eventKey }) => {
   return (
   
     <Card>
-      
       <Accordion.Toggle eventKey={""+eventKey} as={Card.Header}> <div className="d-flex justify-content-between">{player.name} <span >V</span></div> </Accordion.Toggle>
       <Accordion.Collapse eventKey={""+eventKey}>
       <Card.Body>
@@ -35,8 +34,6 @@ const Player = ({ player, eventKey }) => {
       </Card.Body>
       </Accordion.Collapse>
     </Card>
-    
-    
   );
 };
 

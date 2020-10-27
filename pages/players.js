@@ -29,7 +29,7 @@ export default function Players() {
             <AddRelationship />
           </Col>
           <Col>
-          <UnsortedAccounts />
+          {/* <UnsortedAccounts /> */}
           </Col>
         </Row>
         

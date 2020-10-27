@@ -1,6 +1,8 @@
 import { useState, useContext } from 'react';
 import { StatementContext } from '../context/statementContext/statementState';
+import { Button} from 'react-bootstrap';
 const CopyPasteInput = ({}) => {
+  const [columnsView, setColumnsView] = useState(false);
   const [formState, setFormState] = useState({
     club: '',
     playername: '',
@@ -8,9 +10,9 @@ const CopyPasteInput = ({}) => {
     profit: '',
     rake: '',
   });
-
-  //total, second for is for my sanity
   const [total, setTotal] = useState('');
+  
+  //for tab seperated spreadsheet data
   const onUploadTotal = (e) => {
     e.preventDefault();
     let totalArr = total.split(/\t|\n/);
@@ -26,11 +28,9 @@ const CopyPasteInput = ({}) => {
       };
       players.push(player);
     }
-
+    setTotal('');
     return addTransactions(players);
   };
-
-  //above might be messy
 
   const changeHandler = (e) => {
     setFormState({
@@ -44,7 +44,13 @@ const CopyPasteInput = ({}) => {
   const onUpload = (e) => {
     e.preventDefault();
     let upload = parseUpload();
-    console.log(upload);
+    setFormState({
+      club: '',
+      playername: '',
+      playerID: '',
+      profit: '',
+      rake: '',
+    });
     addTransactions(upload);
   };
 
@@ -69,10 +75,12 @@ const CopyPasteInput = ({}) => {
 
   return (
     <>
-      <form>
+    <Button variant={'light'} onClick={e => setColumnsView(prev=> !prev)}>{columnsView ? 'Aggregate' : 'Columns'}</Button>
+    {columnsView ? (<form>
         <textarea
           onChange={changeHandler}
           id='club'
+          value={formState.club}
           placeholder='club'
           rows='20'
           cols='14'
@@ -80,6 +88,7 @@ const CopyPasteInput = ({}) => {
         <textarea
           onChange={changeHandler}
           id='playername'
+          value={formState.playername}
           placeholder='playername'
           rows='20'
           cols='14'
@@ -87,12 +96,14 @@ const CopyPasteInput = ({}) => {
         <textarea
           onChange={changeHandler}
           id='playerID'
+          value={formState.playerID}
           placeholder='playerID'
           rows='20'
           cols='14'
         />
         <textarea
           id='profit'
+          value={formState.profit}
           onChange={changeHandler}
           placeholder='chips won/loss'
           rows='20'
@@ -101,27 +112,31 @@ const CopyPasteInput = ({}) => {
         <textarea
           id='rake'
           onChange={changeHandler}
+          value={formState.rake}
           placeholder='rake paid'
           rows='20'
           cols='14'
         />
         <button onClick={onUpload}>Upload</button>
-      </form>
-      <h5>
-        messy upload, same format as above - C/P straight from spreadsheet
-      </h5>
-      <textarea
+      </form>) : (
+        <div>
+          <div className="">
+        <textarea
         id='spreedsheet'
         onChange={(e) => setTotal(e.target.value)}
-        placeholder='the lot'
+        value={total}
+        placeholder='Club  Account  Win/Loss  Rake  Rakeback'
         rows='20'
         cols='70'
       />
+      </div>
       <button onClick={onUploadTotal}>Upload</button>
-      {/* 
-      {upload.length > 0 && <h1>{upload.length} entries uploaded</h1>}
-      {upload.length > 0 && <p>{upload.map((i) => Object.entries(i))}</p>} */}
-    </>
+      </div>
+      )}
+      
+      </>
+      
+      
   );
 };
 
