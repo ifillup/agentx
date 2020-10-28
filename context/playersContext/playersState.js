@@ -76,7 +76,6 @@ export const PlayersProvider = ({ children }) => {
   //takes a playername and account obj containing clubid, playerid, rb%
   async function addAccount(playerID, account) {
     try {
-      console.log('add and tag account id', account, 'to player', playerID);
       const res = await axios.post(
         'https://agentx-strapi.herokuapp.com/accounts',
         { ...account, player: playerID },

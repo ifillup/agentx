@@ -33,14 +33,14 @@ export default function Layout({ children, title = 'agentX' }) {
           <Navbar.Brand>{title}</Navbar.Brand>
         </Link>
         <Nav className='mr-auto'>
+          <Link href='/inputData' passHref>
+            <Nav.Link>Input Data</Nav.Link>
+          </Link>
           <Link href='/clubs' passHref>
             <Nav.Link>Clubs</Nav.Link>
           </Link>
           <Link href='/players' passHref>
             <Nav.Link>Players</Nav.Link>
-          </Link>
-          <Link href='/inputData' passHref>
-            <Nav.Link>Input Data</Nav.Link>
           </Link>
           <Link href='/reports' passHref>
             <Nav.Link>Reports</Nav.Link>
