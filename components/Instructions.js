@@ -5,8 +5,9 @@ export const Instructions = () => {
     
 
     return (
-        <div>
-            <h4>Instructions</h4>
+        <>
+              <br /> <br/>
+            <h4>Instructions</h4><br /> <br/>
             <p>Welcome to agentX, simplifying player report generation.</p>
             <p>Four Easy Steps</p>
             <ol>
@@ -36,6 +37,6 @@ export const Instructions = () => {
          
         `}</style>
             
-        </div>
+        </>
     )
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import { ClubsContext } from '../context/clubsContext/clubsState';
 import ClubList from '../components/ClubList';
 import AddClub from '../components/AddClub';
@@ -11,16 +11,20 @@ export default function Clubs() {
   const { clubs } = useContext(ClubsContext);
   const clubIDs =clubs.map(c => c.clubID)
   const unsortedClubs = [...new Set(transactions.filter(t => !clubIDs.includes(+t.club)).map(t=>t.club))];
+  const [unknownClubId, setUnknownClubId] = useState();
   return (
     <>      
         <Row>
           <Col>
-            <AddClub />
+            <AddClub clubId={unknownClubId}/>
           </Col>
           <Col>
-        {/* <UnknownClubs /> */}
-        <h3>Unknown Clubs</h3>
-         {unsortedClubs.map(id => <h4>{id}</h4>)}
+        
+        <p>Unknown Clubs - Please enter club details to complete your reporting.</p>
+        <ListGroup as="ul">
+           {unsortedClubs.map(id => (<ListGroup.Item key={id} active={id===unknownClubId}  as="li" onClick={e => setUnknownClubId(id)}>Club ID: {id}</ListGroup.Item>))}
+        </ListGroup>
+        
           </Col>
         </Row>
         <Row>
@@ -28,6 +32,7 @@ export default function Clubs() {
             <ClubList clubs={clubs} />
           </Col>
         </Row>
+        
     </>
   );
 }

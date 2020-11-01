@@ -1,12 +1,17 @@
 import { Button, Form } from 'react-bootstrap';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ClubsContext } from '../context/clubsContext/clubsState';
 import { Container, Row } from 'react-bootstrap';
-const AddClub = () => {
+const AddClub = ({clubId }) => {
   const [club, setClub] = useState({
-    currency: 'MYR',
+    currency: 'USD',
     platform: 'PPP',
+        
   });
+  useEffect(() => {
+    setClub(prev => ({...prev, clubID: clubId}))
+    
+  }, [clubId])
   const { addClub } = useContext(ClubsContext);
 
   const changeHandler = (e) => {
@@ -34,6 +39,7 @@ const AddClub = () => {
           type='text'
           placeholder='ie Asia Union'
           onChange={changeHandler}
+          value={club.name}
           name='name'
         />
         <Form.Label>Club ID</Form.Label>
@@ -42,6 +48,7 @@ const AddClub = () => {
           placeholder='6 digit club id code'
           onChange={changeHandler}
           name='clubID'
+          value={club.clubID}
         />
         <Form.Label>Chip value</Form.Label>
         <Form.Control
@@ -50,6 +57,7 @@ const AddClub = () => {
           placeholder='if 5 chips equal 1 USD enter 5'
           onChange={changeHandler}
           name='chipValue'
+          value={club.chipValue}
         />
         <Form.Label>Currency</Form.Label>
         <Form.Control as='select' onChange={changeHandler} name='currency'>
