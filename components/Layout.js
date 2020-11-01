@@ -9,7 +9,7 @@ import { PlayersContext } from '../context/playersContext/playersState';
 import userReducer from '../context/userContext/userReducer';
 import Register from '../components/Register';
 export default function Layout({ children, title = 'agentX' }) {
-  const { user, logout } = useContext(UserContext);
+  const { user, logout, loading } = useContext(UserContext);
   const { getClubs } = useContext(ClubsContext);
   const { getPlayers } = useContext(PlayersContext);
   //spin up the heroku instance on page load
@@ -54,7 +54,7 @@ export default function Layout({ children, title = 'agentX' }) {
         </Nav>
       </Navbar>
     
-      {user === null ? <Register /> : <Container className='' fluid={true}>{children}</Container>}
+      {user === null ? <Register loading={loading} /> : <Container className='' fluid={true}>{children}</Container>}
       
       {!ready && (<div className="d-flex"><Spinner animation='grow' ></Spinner> <span>it's been a while, let me start the development server </span> </div>)}
       <footer className=''>

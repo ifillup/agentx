@@ -3,13 +3,13 @@ import { UserContext } from '../context/userContext/userState';
 import { useContext, useState } from 'react';
 import { Row } from 'react-bootstrap';
 
-const Register = ({}) => {
+const Register = ({loading}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [signUp, setSignUp] = useState(false);
   const { login, register } = useContext(UserContext);
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     login(email, password);
@@ -66,9 +66,9 @@ const Register = ({}) => {
           <Form.Check type='checkbox' label='Keep me logged in' />
         </Form.Group> */}
         {signUp ? (<Button variant='primary' disabled={password !== confirmPassword} onClick={handleRegistration}>
-          Register
+          {loading ? 'Registering...' : 'Register'}
         </Button>) : (<Button variant='primary' type='submit'>
-          Login
+          {loading ? 'Loading...' : 'Login'}
         </Button>)} 
         
       </Form>

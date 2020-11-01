@@ -45,7 +45,6 @@ export const ClubsProvider = ({ children }) => {
   //add club to both state and db
   async function addClub(club) {
     try {
-      console.log('sending', { club });
       const res = await axios.post(
         'https://agentx-strapi.herokuapp.com/clubs',
         { ...club },
@@ -64,7 +63,6 @@ export const ClubsProvider = ({ children }) => {
   //delete club
   const deleteClub = async (id) => {
     try {
-      console.log('sending', id);
       const res = await axios.delete(
         `https://agentx-strapi.herokuapp.com/clubs/${id}`,
         config

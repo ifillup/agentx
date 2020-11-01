@@ -32,7 +32,6 @@ export const PlayersProvider = ({ children }) => {
         `https://agentx-strapi.herokuapp.com/players`,
         config
       );
-      console.log(res);
       dispatch({
         type: 'LOAD_PLAYERS',
         payload: res.data,
@@ -49,7 +48,6 @@ export const PlayersProvider = ({ children }) => {
         { name: playerName },
         config
       );
-      console.log(res);
       dispatch({
         type: 'ADD_PLAYER',
         payload: res.data,
@@ -64,7 +62,6 @@ export const PlayersProvider = ({ children }) => {
         `https://agentx-strapi.herokuapp.com/players/${id}`,
         config
       );
-      console.log(res);
       dispatch({
         type: 'DELETE_PLAYER',
         payload: res.data,
@@ -81,7 +78,6 @@ export const PlayersProvider = ({ children }) => {
         { ...account, player: playerID },
         config
       );
-      console.log(res);
       dispatch({
         type: 'ADD_ACCOUNT',
         payload: res.data,

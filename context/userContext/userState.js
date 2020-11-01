@@ -6,7 +6,7 @@ import axios from 'axios';
 const initialState = {
   token: null,
   isAuthenticated: null,
-  loading: true,
+  loading: false,
   user: null,
   error: null,
 };
@@ -17,13 +17,18 @@ export const UserContext = createContext(initialState);
 // Provider component
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(UserReducer, initialState);
-
-  // Actions
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
+  // Actions
+  // Set Loading
+  const setLoading = ()=>{
+      dispatch({
+      type: 'SET_LOADING',
+      });
+  }
   // Load User
   const loadUser = async () => {
     setAuthToken(localStorage.token);
@@ -48,7 +53,6 @@ export const UserProvider = ({ children }) => {
         { username: email, email, password },
         config
       );
-      console.log(res);
 
       dispatch({
         type: 'REGISTER_SUCCESS',
@@ -67,7 +71,6 @@ export const UserProvider = ({ children }) => {
 
   // Setup agent account (once)
   const accountSetup = async ({ jwt, user }) => {
-    console.log('setting up new agent');
     const res = await axios.post(
       'https://agentx-strapi.herokuapp.com/agents',
       {},
@@ -86,6 +89,7 @@ export const UserProvider = ({ children }) => {
 
   // Login User
   const login = async (email, password) => {
+    setLoading();
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -133,6 +137,7 @@ export const UserProvider = ({ children }) => {
         loadUser,
         login,
         logout,
+        setLoading
         // clearErrors,
       }}
     >

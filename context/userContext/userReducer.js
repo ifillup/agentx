@@ -2,6 +2,11 @@ export default function (state, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case 'SET_LOADING':
+      return {
+        ...state,
+        loading: true
+      }
     case 'USER_LOADED':
       return {
         ...state,
