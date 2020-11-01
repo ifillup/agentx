@@ -70,6 +70,9 @@ export default function Layout({ children, title = 'agentX' }) {
           position: fixed;
           bottom: 0;
         }
+        input, select {
+          max-width: 400px
+        }
         
       `}</style>
     </>
