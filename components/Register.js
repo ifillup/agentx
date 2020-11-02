@@ -1,6 +1,6 @@
-import { Button, Form, Container } from 'react-bootstrap';
+import { Button, Form, Container, ButtonToolbar } from 'react-bootstrap';
 import { UserContext } from '../context/userContext/userState';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Row } from 'react-bootstrap';
 
 const Register = ({loading}) => {
@@ -9,7 +9,12 @@ const Register = ({loading}) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [signUp, setSignUp] = useState(false);
   const { login, register } = useContext(UserContext);
-  
+  useEffect(() => {
+    if(email === 'demo@demo.com' && password === 'demodemo') {
+      login(email, password);
+    }
+   }, [password])
+    
   const handleSubmit = (e) => {
     e.preventDefault();
     login(email, password);
@@ -18,7 +23,11 @@ const Register = ({loading}) => {
     e.preventDefault();
     register(email, password);
   };
-  
+  const handleDemo = e => {
+    e.preventDefault();
+    setEmail('demo@demo.com')
+    setPassword('demodemo')
+   }
 
   return (
     <div>
@@ -67,9 +76,9 @@ const Register = ({loading}) => {
         </Form.Group> */}
         {signUp ? (<Button variant='primary' disabled={password !== confirmPassword} onClick={handleRegistration}>
           {loading ? 'Registering...' : 'Register'}
-        </Button>) : (<Button variant='primary' type='submit'>
+        </Button>) : (<ButtonToolbar className='justify-content-between'><Button variant='primary' type='submit'>
           {loading ? 'Loading...' : 'Login'}
-        </Button>)} 
+        </Button>{' '}<Button onClick={handleDemo}>demo</Button></ButtonToolbar>)} 
         
       </Form>
       <style jsx>{`
