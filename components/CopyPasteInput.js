@@ -117,6 +117,7 @@ const CopyPasteInput = ({}) => {
           rows='20'
           cols='14'
         />
+        <br />
         <button onClick={onUpload}>Upload</button>
       </form>) : (
         <div>

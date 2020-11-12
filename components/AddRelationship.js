@@ -31,18 +31,18 @@ const AddRelationship = () => {
         <Form.Label>Player name</Form.Label>
 
         <Form.Control as='select' onChange={(e) => setPlayer(e.target.value)}>
-          <option selected label='Select player'></option>
+          <option defaultValue label='Select player'></option>
           {players.map((player) => (
-            <option value={player.id}>{player.name}</option>
+            <option key={player.name} value={player.id}>{player.name}</option>
           ))}
         </Form.Control>
         <Form.Control
           as='select'
           onChange={(e) => setAccount(e.target.value.split(','))}
         >
-          <option selected label='Select account'></option>
-          {transactions.map((t) => (
-            <option value={[t.playerID, t.club, t.playername]}>
+          <option defaultValue label='Select account'></option>
+          {transactions.map((t, i) => (
+            <option key={i} value={[t.playerID, t.club, t.playername]}>
               club:{t.club} player:{t.playername} id:{t.playerID}
             </option>
           ))}

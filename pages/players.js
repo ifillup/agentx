@@ -22,14 +22,13 @@ export default function Players() {
   //console.log(players, 'LOOK')
   return (
     <>
-      
         <Row>
           <Col>
             <AddPlayer />
             <AddRelationship />
           </Col>
           <Col>
-          {/* <UnsortedAccounts /> */}
+          <UnsortedAccounts />
           </Col>
         </Row>
         

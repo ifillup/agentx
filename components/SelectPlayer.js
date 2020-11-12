@@ -36,9 +36,9 @@ const SelectPlayer = ({ handleRequestReport }) => {
             as='select'
             onChange={(e) => handleRequestReport(e.target.value)}
           >
-            <option selected label='Select player'></option>
+            <option defaultValue label='Select player'></option>
             {players.map((player) => (
-              <option value={player.id}>{player.name}</option>
+              <option key={player.name} value={player.id}>{player.name}</option>
             ))}
           </Form.Control>
         </Form.Group>

@@ -101,3 +101,4 @@ export const PlayersProvider = ({ children }) => {
     </PlayersContext.Provider>
   );
 };
+export const usePlayersConext = () => useContext(PlayersContext);

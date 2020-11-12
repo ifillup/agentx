@@ -16,14 +16,14 @@ const InputData = () => {
 
   //Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
-  
+
   return (
     <Row>
-    <Col >
-      <CopyPasteInput />
+      <Col xl={7}>
+        <CopyPasteInput />
       </Col>
-      <Col >
-      {currentItems.length >0 ? (<table class='table table-sm '>
+      <Col  >
+      {currentItems.length >0 ? (<table className='table table-sm '>
       <thead>
         <tr>
           <th>Club</th>
@@ -33,8 +33,8 @@ const InputData = () => {
           <th>Rakeback</th>
         </tr>
         </thead>
-      {currentItems.map(t => (
-        <tr>
+      {currentItems.map((t, i) => (
+        <tr key={i}>
           <td>{t.club}</td>
           <td>{t.playerID}</td>
           <td>{t.playername}</td>
@@ -42,7 +42,7 @@ const InputData = () => {
           <td>{t.rake}</td>
         </tr>
       ))}
-      </table>) : 'No data found'}
+      </table>) : <p>No data found</p>}
       <Pagination currentPage={currentPage} paginate={paginate} itemsPerPage={itemsPerPage} totalItems={transactions.length} />
       </Col>
     </Row>

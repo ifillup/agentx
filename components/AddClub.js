@@ -61,13 +61,13 @@ const AddClub = ({clubId }) => {
         />
         <Form.Label>Currency</Form.Label>
         <Form.Control as='select' onChange={changeHandler} name='currency'>
-          <option selected value='USD'>
+          <option defaultValue value='USD'>
             USD
           </option>
         </Form.Control>
         <Form.Label>Platform</Form.Label>
         <Form.Control as='select' onChange={changeHandler} name='platform'>
-          <option selected value='PPP'>
+          <option defaultValue value='PPP'>
             PPPoker
           </option>
           <option value='PB'>PokerBros</option>

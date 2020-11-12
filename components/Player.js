@@ -20,8 +20,8 @@ const Player = ({ player, eventKey }) => {
           </thead>
           <tbody>
           {player?.accounts &&
-          player.accounts.map((account) => (
-            <tr>
+          player.accounts.map((account, i) => (
+            <tr key={i}>
               <td>{account.accountID}</td>
               <td>{account.name}</td>
               <td>{account.clubID}</td>
