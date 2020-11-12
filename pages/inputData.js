@@ -1,18 +1,29 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import CopyPasteInput from '../components/CopyPasteInput';
 import Transactions from '../components/Transactions';
 import { StatementContext } from '../context/statementContext/statementState';
-
+import Pagination from '../components/Pagination'
 const InputData = () => {
+  
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage, setItemsPerPage] = useState(20)
   const { transactions } = useContext(StatementContext);
+
+  const indexOfLastItem = currentPage * itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const currentItems = transactions.slice(indexOfFirstItem, indexOfLastItem);
+
+  //Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+  
   return (
     <Row>
     <Col >
       <CopyPasteInput />
       </Col>
       <Col >
-      {transactions.length >0 ? (<table class='table table-sm '>
+      {currentItems.length >0 ? (<table class='table table-sm '>
       <thead>
         <tr>
           <th>Club</th>
@@ -22,7 +33,7 @@ const InputData = () => {
           <th>Rakeback</th>
         </tr>
         </thead>
-      {transactions.map(t => (
+      {currentItems.map(t => (
         <tr>
           <td>{t.club}</td>
           <td>{t.playerID}</td>
@@ -32,7 +43,7 @@ const InputData = () => {
         </tr>
       ))}
       </table>) : 'No data found'}
-      
+      <Pagination currentPage={currentPage} paginate={paginate} itemsPerPage={itemsPerPage} totalItems={transactions.length} />
       </Col>
     </Row>
   );

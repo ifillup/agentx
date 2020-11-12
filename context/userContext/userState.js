@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useContext, useReducer } from 'react';
 import UserReducer from './userReducer';
 import axios from 'axios';
 
@@ -145,3 +145,5 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
+
+export const useUserContext = () => useContext(UserContext);

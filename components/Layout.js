@@ -67,6 +67,7 @@ export default function Layout({ children, title = 'agentX' }) {
         }
         .container-fluid {
           margin-top: 40px;
+          flex: 1 1 0%;
         }
         footer {
           
